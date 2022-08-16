@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>御神籤</title>
+    <!--<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">-->
+    <!--<link rel="stylesheet" href="main.css" />-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css">
+    <link rel="stylesheet" href="https://newcss.net/theme/night.css">
+</head>
+
+<body>
+    <div style="text-align: center">
+        <!--    <p><button id="btn1"></button></p>-->
+        <p>＼(^o^)／クリックしておみくじを振ろう＼(^o^)／</p>
+        <p><img id="img1" src="images/omikuji.png" /></p>
+    </div>
+    <script>
+        // 与える範囲からランダムの整数を取得
+        function getRandomInt(scope) {
+            return Math.floor(Math.random() * scope);
+
+        }
+        // おみくじの画像配列
+        let omikujiImages = [
+            "daikichi.png",
+            "chuukichi.png",
+            "kichi.png",
+            "syoukichi.png",
+            "suekichi.png",
+            "kyou.png",
+            "daikyou.png"
+        ];
+        // 配列の要素の数
+        let myLength = omikujiImages.length;
+
+        // 画像のオブジェクトを取得
+        let myImg = document.getElementById("img1");
+
+        // タイマーの宣言
+        let myTimer;
+
+        // タイマーを作成
+        function startTimer() {
+            myTimer = setInterval(() => {
+                //ランダムの画像を取得
+                let myIndex = getRandomInt(myLength);
+                myImg.src = "images/" + omikujiImages[myIndex];
+            }, 100);
+        }
+
+        // タイマーをクリア
+        function stopTimer() {
+            clearInterval(myTimer);
+        }
+
+        // タイマー実行のフラグ
+        let isOn = false;
+
+        // 画像クリック後の動作
+        myImg.addEventListener("click", function() {
+            // フラグを逆に変更する
+            isOn = !isOn;
+
+            if (isOn == true) {
+                // フラグがtrueのときタイマー実行
+                startTimer();
+            } else {
+                // フラグがfalseのときタイマーを終了
+                stopTimer();
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
